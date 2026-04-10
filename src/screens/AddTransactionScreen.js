@@ -7,6 +7,7 @@ import useTransactionStore from '../store/useTransactionStore';
 
 export default function AddTransactionScreen({navigation}) {
   const addTransaction = useTransactionStore((state) => state.addTransaction);
+ 
 
   const [amount, setAmount] = useState('');
   const [note, setNote] = useState('');
@@ -61,6 +62,7 @@ export default function AddTransactionScreen({navigation}) {
                       type,
                       category,
                       date : new Date().toISOString().split('T')[0],
+
           })}
                         style={{borderWidth:1,marginTop:50}}>
         <Text> Save </Text>

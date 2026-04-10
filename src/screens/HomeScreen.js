@@ -15,9 +15,8 @@ export default function HomeScreen({navigation}) {
   const monthName = selectedDate.toLocaleString('default', { month: 'long' });
 
 
-  const transactions = getMonthly(year,month);
+  const transactions = getMonthly(month,year);
 
-  console.log(transactions);
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text> {monthName} {year}</Text>

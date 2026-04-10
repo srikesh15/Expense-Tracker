@@ -41,7 +41,7 @@ const useTransactionStore = create(
                 return get().transactions.filter((tx) => {
                     const d = new Date(tx.date);
                     return(
-                        d.getFullYear() === year && d.getMonth === month
+                        d.getFullYear() === year && d.getMonth() === month
                     );
                 });
             }
