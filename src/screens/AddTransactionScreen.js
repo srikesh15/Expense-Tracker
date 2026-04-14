@@ -1,20 +1,21 @@
 import { View, Text,TextInput,TouchableOpacity } from 'react-native';
 import {useState} from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import {CATEGORIES} from '../constants/Categories';
 import useTransactionStore from '../store/useTransactionStore';
 
 
+
 export default function AddTransactionScreen({navigation}) {
   const addTransaction = useTransactionStore((state) => state.addTransaction);
  
-
   const [amount, setAmount] = useState('');
   const [note, setNote] = useState('');
   const [type, setType] = useState('');
   const [category, setCategory] = useState('');
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 
       <Text>Amount</Text>
       <TextInput style={{borderWidth:1,width:'50%',marginBottom:20}}
@@ -62,8 +63,7 @@ export default function AddTransactionScreen({navigation}) {
                       type,
                       category,
                       date : new Date().toISOString().split('T')[0],
-
-          })}
+                    })}
                         style={{borderWidth:1,marginTop:50}}>
         <Text> Save </Text>
       </TouchableOpacity>
@@ -72,6 +72,6 @@ export default function AddTransactionScreen({navigation}) {
                 style={{borderWidth:1,marginTop:200}}>
         <Text> Back </Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 }
