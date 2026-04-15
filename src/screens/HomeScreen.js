@@ -5,26 +5,29 @@ import useTransactionStore from '../store/useTransactionStore';
 
 
 
-
 export default function HomeScreen({navigation}) {
   
   const [selectedDate,setSelectedDate] = useState(new Date());
 
-  const getMonthly = useTransactionStore((state)=> state.getMonthly);
-
+  // read transactions directly first
+  const transactions = useTransactionStore((state) => state.transactions);
   const year = selectedDate.getFullYear();
   const month = selectedDate.getMonth();
   const monthName = selectedDate.toLocaleString('default', { month: 'long' });
+  
+   // then filter in the component
+  const monthlyTransactions = transactions.filter((tx) => {
+    const d = new Date(tx.date);
+    return d.getFullYear() === year && d.getMonth() === month;
+  });
 
-
-  const transactions = getMonthly(month,year);
 
   return (
     <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text> {monthName} {year}</Text>
   
       <FlatList
-              data={transactions}
+              data={monthlyTransactions}
               keyExtractor={(item)=>item.id}
               renderItem={({item}) => (
                 <TouchableOpacity onPress={()=>navigation.navigate('TransactionDetail',{transaction:item})}>
