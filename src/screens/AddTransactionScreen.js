@@ -61,13 +61,17 @@ export default function AddTransactionScreen({navigation}) {
         </View>
 
         <TouchableOpacity 
-              onPress={()=>addTransaction({
+              onPress={()=>{
+                    addTransaction({
                         amount : Number(amount),
                         note,
                         type,
                         category,
                         date : new Date().toISOString().split('T')[0],
-                      })}
+                      });
+                    // navigation.goBack();
+                  }
+              }
                           style={{borderWidth:1,marginTop:50}}>
           <Text style={{fontSize:16}}> Save </Text>
         </TouchableOpacity>
