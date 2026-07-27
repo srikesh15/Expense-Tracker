@@ -29,6 +29,8 @@ const useTransactionStore = create(
                 }));
             },
 
+            clearAll: () => set({ transactions: [] }),
+
 
             updateTransaction : (data,id)=>{
                 set((state) =>({
